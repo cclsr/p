@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGoodTable extends Migration
+class AddEmailToGoods extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,9 @@ class CreateGoodTable extends Migration
      */
     public function up()
     {
-        Schema::create('goods', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->text('content');
-            $table->timestamps();
+        Schema::table('goods', function (Blueprint $table) {
+            //
+            $table->string('email');
         });
     }
 
@@ -27,6 +25,9 @@ class CreateGoodTable extends Migration
      */
     public function down()
     {
-        Schema::drop('goods');
+        Schema::table('goods', function (Blueprint $table) {
+            //
+            $table->dropColumn('email');
+        });
     }
 }
